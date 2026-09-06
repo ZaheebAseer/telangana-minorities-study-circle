@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard | Telangana Minorities Study Circle</title>
+<meta name="description" content="Administration view for site visits, portal registrations and enquiries.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/jpeg" href="images/favicon.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="admin-page" data-page="admin">
+<header class="admin-top">
+  <div class="wrap">
+    <div>
+      <a href="index.html" style="font-size:.86rem;color:#d9e9fa;">← Back to website</a>
+      <h2>Portal Administration</h2>
+      <p>Site visits, registrations and enquiries for jobseekers, employers and students.</p>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px;">
+      <span id="adminUserEmail" style="color:#d9e9fa;font-size:.84rem;"></span>
+      <button id="logoutBtn" class="admin-button" type="button" style="display:none;">Log out</button>
+      <div class="admin-logo"><img src="images/taraqqi-logo.jpeg" alt="Taleem Se Taraqqi logo"></div>
+    </div>
+  </div>
+</header>
+
+<!-- LOGIN GATE -->
+<main class="admin-content" id="loginScreen">
+  <div class="wrap" style="max-width:420px;">
+    <section class="admin-card" style="padding:32px 28px;">
+      <h3 style="margin-bottom:6px;">Admin Sign In</h3>
+      <p style="color:var(--ink-soft);font-size:.9rem;margin-bottom:20px;">Sign in with the admin account created in Firebase Authentication.</p>
+      <form id="loginForm" novalidate>
+        <label style="display:block;font-size:.84rem;font-weight:700;margin-bottom:6px;" for="loginEmail">Email</label>
+        <input type="email" id="loginEmail" name="email" required autocomplete="username" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:5px;margin-bottom:14px;font-family:inherit;">
+        <label style="display:block;font-size:.84rem;font-weight:700;margin-bottom:6px;" for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" name="password" required autocomplete="current-password" style="width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:5px;margin-bottom:18px;font-family:inherit;">
+        <button type="submit" class="admin-button primary" style="width:100%;justify-content:center;">Sign In</button>
+        <p id="loginError" style="color:#b3261e;font-size:.85rem;margin-top:12px;display:none;"></p>
+      </form>
+      <p style="font-size:.8rem;color:var(--ink-soft);margin-top:20px;">Not configured yet? See <code>README-ADMIN-SETUP.md</code> in the project files for the one-time Firebase setup steps.</p>
+    </section>
+  </div>
+</main>
+
+<!-- DASHBOARD (shown after login) -->
+<main class="admin-content" id="dashboardScreen" style="display:none;">
+  <div class="wrap">
+    <section class="admin-summary" aria-label="Visit and registration totals">
+      <div class="admin-stat"><span>Page Views</span><b id="statPageViews">0</b></div>
+      <div class="admin-stat"><span>Unique Visitors</span><b id="statUniqueVisitors">0</b></div>
+      <div class="admin-stat"><span>Total Submissions</span><b id="totalRecords">0</b></div>
+      <div class="admin-stat"><span>Jobseekers</span><b id="jobseekerRecords">0</b></div>
+      <div class="admin-stat"><span>Employers</span><b id="employerRecords">0</b></div>
+      <div class="admin-stat"><span>Students</span><b id="studentRecords">0</b></div>
+      <div class="admin-stat"><span>Parents / Other</span><b id="otherRecords">0</b></div>
+    </section>
+
+    <section class="admin-card">
+      <div class="admin-card-head">
+        <div><h3>Recent portal activity</h3><p>New records appear here as soon as a form is submitted anywhere on the site.</p></div>
+        <div class="admin-actions">
+          <select id="filterType" class="admin-button" style="cursor:pointer;">
+            <option value="all">All types</option>
+            <option value="Jobseeker">Jobseeker</option>
+            <option value="Employer">Employer</option>
+            <option value="Student">Student</option>
+            <option value="Parent">Parent</option>
+            <option value="Other">Other</option>
+          </select>
+          <button class="admin-button" id="refreshBtn" type="button">Refresh</button>
+          <button class="admin-button primary" id="exportRecords" type="button">Export CSV</button>
+        </div>
+      </div>
+      <div class="admin-table-wrap">
+        <table class="admin-table" id="adminRecordsTable">
+          <thead><tr><th>Type</th><th>Name / organisation</th><th>Contact</th><th>Details</th><th>Recorded at</th></tr></thead>
+          <tbody id="adminRecordsBody"><tr><td colspan="5" class="empty-records">Loading…</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+    <p class="admin-note">Data is stored centrally in Firebase and reflects activity from every visitor to the live site. Only signed-in admins can view this page.</p>
+  </div>
+</main>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/firebase-init.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>
