@@ -1427,8 +1427,22 @@ footer ul li a:hover {
 /* ---------- Responsive: 1320px ---------- */
 
 @media (max-width: 1320px) {
+  /* Keep the leadership row available on desktop/laptop widths. */
   .leaders-strip {
-    display: none;
+    gap: 12px;
+  }
+
+  .leader-photo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .leader b {
+    font-size: 0.72rem;
+  }
+
+  .leader span {
+    font-size: 0.62rem;
   }
 }
 
@@ -1447,6 +1461,55 @@ footer ul li a:hover {
 /* ---------- Responsive: 920px ---------- */
 
 @media (max-width: 920px) {
+  /* Keep leadership photos and the notice ticker visible on tablets/phones. */
+  .header-top {
+    gap: 14px;
+    row-gap: 10px;
+  }
+
+  .leaders-strip {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 14px;
+    order: 3;
+  }
+
+  .leader {
+    min-width: 0;
+    gap: 7px;
+  }
+
+  .leader-photo {
+    width: 42px;
+    height: 42px;
+  }
+
+  .leader b {
+    font-size: 0.7rem;
+    line-height: 1.15;
+    white-space: normal;
+  }
+
+  .leader span {
+    font-size: 0.6rem;
+    line-height: 1.2;
+  }
+
+  .marquee-wrap {
+    display: block;
+    flex-basis: 100%;
+    order: 4;
+    min-width: 0;
+    padding: 7px 0;
+    border-left: 0;
+    border-right: 0;
+  }
+
+  .marquee-track {
+    font-size: 0.78rem;
+    animation-duration: 20s;
+  }
   .hero-stats .wrap {
     grid-template-columns: repeat(2, 1fr);
     gap: 18px;
@@ -1606,52 +1669,6 @@ footer ul li a:hover {
 
   .topstrip .leaders {
     gap: 14px;
-  }
-
-  /* Keep the leadership photos visible on phones instead of hiding them. */
-  .leaders-strip {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px 14px;
-    order: 3;
-  }
-
-  .leader {
-    min-width: 0;
-    gap: 7px;
-  }
-
-  .leader-photo {
-    width: 40px;
-    height: 40px;
-  }
-
-  .leader b {
-    font-size: 0.68rem;
-    line-height: 1.15;
-    white-space: normal;
-  }
-
-  .leader span {
-    font-size: 0.58rem;
-    line-height: 1.2;
-  }
-
-  /* Keep the header notice/ticker running on phones. */
-  .marquee-wrap {
-    display: block;
-    flex-basis: 100%;
-    order: 4;
-    min-width: 0;
-    padding: 7px 0;
-    border-left: 0;
-    border-right: 0;
-  }
-
-  .marquee-track {
-    font-size: 0.78rem;
-    animation-duration: 20s;
   }
 
   .login-trigger {
