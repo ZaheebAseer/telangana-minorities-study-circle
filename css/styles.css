@@ -676,7 +676,7 @@ header.site {
   .hero-slideshow { height: 460px; }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 680px) {
   .hero .wrap {
     grid-template-columns: 1fr;
     padding-top: 48px;
