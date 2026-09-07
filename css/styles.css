@@ -1487,7 +1487,13 @@ footer ul li a:hover {
   }
 
   .marquee-wrap {
-    display: none;
+    display: block;
+    flex-basis: 100%;
+    order: 4;
+    border-left: 0;
+    border-right: 0;
+    padding: 8px 0;
+    min-width: 0;
   }
 }
 
@@ -1600,6 +1606,52 @@ footer ul li a:hover {
 
   .topstrip .leaders {
     gap: 14px;
+  }
+
+  /* Keep the leadership photos visible on phones instead of hiding them. */
+  .leaders-strip {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 14px;
+    order: 3;
+  }
+
+  .leader {
+    min-width: 0;
+    gap: 7px;
+  }
+
+  .leader-photo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .leader b {
+    font-size: 0.68rem;
+    line-height: 1.15;
+    white-space: normal;
+  }
+
+  .leader span {
+    font-size: 0.58rem;
+    line-height: 1.2;
+  }
+
+  /* Keep the header notice/ticker running on phones. */
+  .marquee-wrap {
+    display: block;
+    flex-basis: 100%;
+    order: 4;
+    min-width: 0;
+    padding: 7px 0;
+    border-left: 0;
+    border-right: 0;
+  }
+
+  .marquee-track {
+    font-size: 0.78rem;
+    animation-duration: 20s;
   }
 
   .login-trigger {
