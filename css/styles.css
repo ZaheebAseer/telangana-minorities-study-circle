@@ -301,13 +301,14 @@ header.site {
 }
 
 .leader-photo {
-  width: 44px;
-  height: 44px;
+  width: 62px;
+  height: 62px;
   border-radius: 60%;
   flex-shrink: 0;
-  border: 2px solid var(--blue);
+  border: 3px solid var(--blue);
   background: var(--sky);
   overflow: hidden;
+  box-shadow: 0 3px 10px rgba(10,61,102,0.18);
 }
 
 .leader-photo img {
@@ -319,15 +320,15 @@ header.site {
 
 .leader b {
   display: block;
-  font-size: 0.8rem;
+  font-size: 0.98rem;
   white-space: nowrap;
 }
 
 .leader span {
   display: block;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   color: var(--ink-soft);
-  max-width: 190px;
+  max-width: 210px;
   white-space: normal;
   line-height: 1.3;
 }
@@ -1433,16 +1434,16 @@ footer ul li a:hover {
   }
 
   .leader-photo {
-    width: 40px;
-    height: 40px;
+    width: 54px;
+    height: 54px;
   }
 
   .leader b {
-    font-size: 0.72rem;
+    font-size: 0.86rem;
   }
 
   .leader span {
-    font-size: 0.62rem;
+    font-size: 0.72rem;
   }
 }
 
@@ -1481,18 +1482,18 @@ footer ul li a:hover {
   }
 
   .leader-photo {
-    width: 42px;
-    height: 42px;
+    width: 52px;
+    height: 52px;
   }
 
   .leader b {
-    font-size: 0.7rem;
+    font-size: 0.84rem;
     line-height: 1.15;
     white-space: normal;
   }
 
   .leader span {
-    font-size: 0.6rem;
+    font-size: 0.7rem;
     line-height: 1.2;
   }
 
@@ -1750,13 +1751,12 @@ footer ul li a:hover {
    ========================================= */
 
 .career-counselling-image {
-  max-width: 520px;
+  max-width: 800px;
   margin: 0 auto 45px;
   text-align: center;
 }
 
 .career-counselling-image img {
-  width: 50%;
   max-height: 300px;
   object-fit: cover;
   object-position: center;
