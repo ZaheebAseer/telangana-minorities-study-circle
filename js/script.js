@@ -320,6 +320,45 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 3200);
   });
 
+  // Slim scroll-progress bar across the very top of the page
+  const progressBar = document.createElement('div');
+  progressBar.className = 'scroll-progress';
+  document.body.prepend(progressBar);
+  const updateProgress = () => {
+    const h = document.documentElement;
+    const scrolled = h.scrollTop;
+    const height = h.scrollHeight - h.clientHeight;
+    progressBar.style.width = height > 0 ? (scrolled / height * 100) + '%' : '0%';
+  };
+  updateProgress();
+  window.addEventListener('scroll', updateProgress, { passive: true });
+
+  // Floating hero badge: auto-rotates through all our services, one at a time.
+  document.querySelectorAll('[data-badge-rotator]').forEach(badge => {
+    const items = [
+      { icon: '🎓', title: 'Admissions Open', text: 'TSPSC Group I & II Foundation Batch' },
+      { icon: '💼', title: 'Jobseeker Portal', text: 'Register free & meet hiring employers' },
+      { icon: '🧭', title: 'Career Counselling', text: 'Book a free one-on-one session' },
+      { icon: '📚', title: 'Digital Library', text: '10,000+ titles, open to every student' },
+      { icon: '🏛️', title: '33 Districts', text: 'Coaching centres across Telangana' },
+      { icon: '▶️', title: 'Watch Our Reel', text: 'Campus life, live on Instagram' },
+    ];
+    const iconEl = badge.querySelector('.fb-icon');
+    const titleEl = badge.querySelector('.fb-text b');
+    const textEl = badge.querySelector('.fb-text span');
+    let i = 0;
+    setInterval(() => {
+      badge.classList.add('fb-fade');
+      setTimeout(() => {
+        i = (i + 1) % items.length;
+        iconEl.textContent = items[i].icon;
+        titleEl.textContent = items[i].title;
+        textEl.textContent = items[i].text;
+        badge.classList.remove('fb-fade');
+      }, 300);
+    }, 3200);
+  });
+
   // Scroll reveal: fades key content blocks up into view as the page is scrolled.
   // Cards with their own hover-lift (dash-card, service-card) only fade in, so the
   // reveal transform never fights with the hover transform later. Anything already
@@ -327,7 +366,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const revealUpSelectors = [
     '.section-head', '.gallery-card', '.test-card', '.program-card',
     '.district-card', '.callout-box', '.photo-slider',
-    '.staff-slider'
+    '.staff-slider', '.opportunities-panel', '.updates-rail', '.doc-card'
   ];
   const revealFadeSelectors = ['.dash-card', '.service-card'];
 
@@ -353,5 +392,43 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     register(revealUpSelectors, 'reveal-up');
     register(revealFadeSelectors, 'reveal-fade');
+  }
+
+  // Animated count-up for hero stats
+  const countEls = document.querySelectorAll('.hero-stats b[data-count]');
+  if (countEls.length && 'IntersectionObserver' in window) {
+    const animateCount = (el) => {
+      const target = parseInt(el.getAttribute('data-count'), 10) || 0;
+      const suffix = el.getAttribute('data-suffix') || '';
+      const duration = 1400;
+      const start = performance.now();
+      const step = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const value = Math.round(target * eased);
+        el.textContent = value.toLocaleString('en-IN') + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+    const countIO = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCount(entry.target);
+          countIO.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    countEls.forEach(el => countIO.observe(el));
+  }
+
+  // Sticky header shadow once the page scrolls
+  const siteHeader = document.querySelector('header.site');
+  if (siteHeader) {
+    const toggleHeaderShadow = () => {
+      siteHeader.classList.toggle('is-scrolled', window.scrollY > 40);
+    };
+    toggleHeaderShadow();
+    window.addEventListener('scroll', toggleHeaderShadow, { passive: true });
   }
 });
