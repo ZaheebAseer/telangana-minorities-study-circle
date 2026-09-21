@@ -3174,3 +3174,11 @@ footer ul li a:hover {
   .doc-thumb { height: 190px; }
   .doc-info { padding: 24px 22px; }
 }
+
+
+/* Social media icons */
+.social a, .foot-social a { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; text-decoration:none; transition:transform .2s ease, opacity .2s ease; }
+.social a svg, .foot-social a svg { width:19px; height:19px; display:block; }
+.social a:hover, .foot-social a:hover { transform:translateY(-2px); }
+.social a.social-disabled, .foot-social a.social-disabled { opacity:.45; cursor:default; }
+.social a.social-disabled:hover, .foot-social a.social-disabled:hover { transform:none; }
