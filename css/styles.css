@@ -3177,8 +3177,64 @@ footer ul li a:hover {
 
 
 /* Social media icons */
-.social a, .foot-social a { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; text-decoration:none; transition:transform .2s ease, opacity .2s ease; }
-.social a svg, .foot-social a svg { width:19px; height:19px; display:block; }
-.social a:hover, .foot-social a:hover { transform:translateY(-2px); }
-.social a.social-disabled, .foot-social a.social-disabled { opacity:.45; cursor:default; }
-.social a.social-disabled:hover, .foot-social a.social-disabled:hover { transform:none; }
+.topstrip .social {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+.topstrip .social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  margin-left: 0;
+  padding: 0;
+  text-decoration: none;
+  line-height: 1;
+  transition: transform .2s ease, opacity .2s ease;
+}
+.topstrip .social a svg {
+  width: 19px !important;
+  height: 19px !important;
+  max-width: 19px;
+  max-height: 19px;
+  display: block;
+}
+.topstrip .social a:hover { transform: translateY(-2px); opacity: 1; }
+.topstrip .social a.social-disabled { opacity: .45; cursor: default; }
+.topstrip .social a.social-disabled:hover { transform: none; }
+
+.foot-social {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 8px;
+}
+.foot-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  margin-right: 0;
+  padding: 0;
+  text-decoration: none;
+  line-height: 1;
+  transition: transform .2s ease, opacity .2s ease;
+}
+.foot-social a svg {
+  width: 19px !important;
+  height: 19px !important;
+  max-width: 19px;
+  max-height: 19px;
+  display: block;
+}
+.foot-social a:hover { transform: translateY(-2px); }
+.foot-social a.social-disabled { opacity: .45; cursor: default; }
+.foot-social a.social-disabled:hover { transform: none; }
